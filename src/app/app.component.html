@@ -1,0 +1,45 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Category Prediction</title>
+  <link rel="stylesheet" href="app.component.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+  <div class="container">
+    <h1>Text Category Prediction</h1>
+
+
+    <div>
+      <label for="booleanSwitch">Switch input type:  </label>
+      <mat-slide-toggle class="example-margin" [(ngModel)]="booleanSwitchValue" (change)="onSwitchChange()"></mat-slide-toggle>
+      <p></p>
+    </div>
+
+    <form #myForm="ngForm">
+      <div>
+        <label for="textInput" [hidden]="booleanSwitchValue">Text Input:</label>
+        <input type="text" [(ngModel)]="textInputValue" [hidden]="booleanSwitchValue">
+      </div>
+
+      <div>
+        <label for="fileInput" [hidden]="!booleanSwitchValue">File Input:</label>
+        <input type="file" id="fileInput" name="fileInput" (change)="onFileChange($event)" [hidden]="!booleanSwitchValue">
+      </div>
+    </form>
+
+    <button (click)="predictCategory()">Predict Category</button>
+
+    <div id="result">
+      <div class="category-container">
+        <div class="category" id="cat1" [ngStyle]="{'background-color': catColorList[0]}"><div class="label">Computer Science</div></div>
+        <div class="category" id="cat2" [ngStyle]="{'background-color': catColorList[1]}"><div class="label">Physics</div></div>
+        <div class="category" id="cat3" [ngStyle]="{'background-color': catColorList[2]}"><div class="label">Mathematics</div></div>
+        <div class="category" id="cat4" [ngStyle]="{'background-color': catColorList[3]}"><div class="label">Statistics</div></div>
+        <div class="category" id="cat5" [ngStyle]="{'background-color': catColorList[4]}"><div class="label">Quantitative Biology</div></div>
+        <div class="category" id="cat6" [ngStyle]="{'background-color': catColorList[5]}"><div class="label">Finance</div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
