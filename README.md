@@ -13,13 +13,13 @@ Uruchom polecenie `ng test`, aby uruchomić testy jednostkowe za pomocą [Karma]
 ## Pokrycie kodu
 
 Pokrycie kodu testami znajduje się w katalogu `/covrage/docu2/.` i wygląda ono następująco: 
-![image](https://hackmd.io/_uploads/SJklDn5YT.png)
+![image](https://hackmd.io/_uploads/Sk1Zk6VrC.png)
 
 ## Przykłady działania
 
-![image](https://hackmd.io/_uploads/BkS5t3cYp.png)
+![image](https://hackmd.io/_uploads/BkwY1aNSC.png)
 
-![image](https://hackmd.io/_uploads/rkBTF39Yp.png)
+![image](https://hackmd.io/_uploads/BJrel6VBA.png)
 
 
 
