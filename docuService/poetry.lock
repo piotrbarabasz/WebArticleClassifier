@@ -423,6 +423,30 @@ intel-openmp = "==2021.*"
 tbb = "==2021.*"
 
 [[package]]
+name = "morfeusz2"
+version = "1.99.8"
+description = "Python bindings for Morfeusz 2"
+optional = false
+python-versions = "*"
+files = [
+    {file = "morfeusz2-1.99.8-20240126-cp27-cp27-win32.whl", hash = "sha256:00ac2664d94e8dcb107af00fc01428e91d5d68b4fb37623480556afa851c913a"},
+    {file = "morfeusz2-1.99.8-20240126-cp27-cp27-win_amd64.whl", hash = "sha256:5e98848eea0ea6eae981349de0278a48dd9da6aae153f6993638284df96de682"},
+    {file = "morfeusz2-1.99.8-20240126-cp27-cp27mu-manylinux2014_i686.whl", hash = "sha256:b776e08107d18875d73d8e10ab702dcfe19fb59b955c78f984d2c9184ebec5ed"},
+    {file = "morfeusz2-1.99.8-20240126-cp27-cp27mu-manylinux2014_x86_64.whl", hash = "sha256:2893090a6a1e35f091a1eeeadbd84cd2bf69ab8b79fdbd4bcaeb96d70b80b1ea"},
+    {file = "morfeusz2-1.99.8-20240126-cp310-cp310-win32.whl", hash = "sha256:895718322fa92bd8240d0c2924f9a9098631b185c61c7a75c5007993a8312678"},
+    {file = "morfeusz2-1.99.8-20240126-cp310-cp310-win_amd64.whl", hash = "sha256:8a6c719995b8c13047715984f1b98f60ffab0d013e6d498d580b956d6a74a570"},
+    {file = "morfeusz2-1.99.8-20240126-cp310.cp36.cp37.cp38.cp39-abi3-manylinux2014_i686.whl", hash = "sha256:a7cb79a294da215331b267741842cbf69e375313294e79c90784ef7aceab6af7"},
+    {file = "morfeusz2-1.99.8-20240126-cp310.cp36.cp37.cp38.cp39-abi3-manylinux2014_x86_64.whl", hash = "sha256:43868347a2ed3d6a09306b081a9af07ca9d36ba1e22a4c0cb8316a46405dae53"},
+    {file = "morfeusz2-1.99.8-20240126-cp311-cp311-win_amd64.whl", hash = "sha256:02e196c3bfe71c2bb2182f014659790064d7f28d49be0461945dd0c1612d63da"},
+    {file = "morfeusz2-1.99.8-20240126-cp36-cp36-win32.whl", hash = "sha256:e9222ac547f8eb0cc731f6526b4298107cd36c00aea941007752de8710b686ea"},
+    {file = "morfeusz2-1.99.8-20240126-cp36-cp36-win_amd64.whl", hash = "sha256:1b1e17e79d351a51c496a2941ed6ebadd1e0b343a78e217699e4c122811baf9f"},
+    {file = "morfeusz2-1.99.8-20240126-cp37-cp37-win_amd64.whl", hash = "sha256:4d4a995650c3ed5399724ad6bd996d30125a91a17356354ac251a24ca2820fdd"},
+    {file = "morfeusz2-1.99.8-20240126-cp38-cp38-win_amd64.whl", hash = "sha256:150d52c5a959e3c88807499a201c750ba8c104525b26246444cdad62e37106d4"},
+    {file = "morfeusz2-1.99.8-20240126-cp39-cp39-win32.whl", hash = "sha256:8949d2618f9f2a8cc98eab0c23305fe40571f1018ddd371bf42059bb45ddf81a"},
+    {file = "morfeusz2-1.99.8-20240126-cp39-cp39-win_amd64.whl", hash = "sha256:e4241ff33a0250a7f1b61d0bd3f560e55a3b10802c983c141ef2b395d2003269"},
+]
+
+[[package]]
 name = "mpmath"
 version = "1.3.0"
 description = "Python library for arbitrary-precision floating-point arithmetic"
@@ -1326,4 +1350,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "dc7529cad5d6ea036e38a430946d7cd4cbeef9134025bbd680ed5387c9489649"
+content-hash = "cbc1c2bafa5526503c4a33c34faf011509909bbe80c744ba8f9c6bf2e6201aa3"

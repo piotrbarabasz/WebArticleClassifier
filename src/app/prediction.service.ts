@@ -17,4 +17,12 @@ export class PredictionService {
     });
     return this.http.post<any>(`${this.apiUrl}/predict`, JSON.stringify(payload), { headers });
   }
+
+  predict_pl(text: string): Observable<any> {
+    const payload = { text };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.apiUrl}/predict_pl`, JSON.stringify(payload), { headers });
+  }
 }
