@@ -38,4 +38,19 @@ describe('PredictionService', () => {
 
     req.flush(mockResponse);
   });
+
+  it('should send a polish prediction request', () => {
+    const text = 'test text';
+    const mockResponse = { prediction: '[0, 1, 0, 1, 0, 1]' };
+
+    service.predict_pl(text).subscribe(response => {
+      expect(response).toEqual(mockResponse);
+    });
+
+    const req = httpMock.expectOne(`${service.apiUrl}/predict_pl`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.headers.get('Content-Type')).toBe('application/json');
+
+    req.flush(mockResponse);
+  });
 });

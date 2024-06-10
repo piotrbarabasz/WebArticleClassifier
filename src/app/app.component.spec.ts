@@ -10,12 +10,11 @@ import { of } from 'rxjs';
 
 describe('AppComponent', () => {
   let predictionServiceSpy: jasmine.SpyObj<PredictionService>;
-  let httpMock: HttpTestingController;
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('PredictionService', ['predict']);
+    const spy = jasmine.createSpyObj('PredictionService', ['predict', 'predict_pl']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -52,11 +51,12 @@ describe('AppComponent', () => {
     });
   }));
 
-  it('should predict category for text input', () => {
+  it('should predict category for text input in English', () => {
     component.booleanSwitchValue = false;
     component.textInputValue = 'test text';
+    component.selectedLanguage = 'en';
 
-    const mockResponse = { prediction: '[1, 0, 1, 0, 1, 0]' };
+    const mockResponse = { predictions: [1, 0, 1, 0, 1, 0] };
     predictionServiceSpy.predict.and.returnValue(of(mockResponse));
 
     component.predictCategory();
@@ -65,16 +65,45 @@ describe('AppComponent', () => {
     expect(component.catColorList).toEqual([component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor]);
   });
 
-  it('should predict category for file input', () => {
+  it('should predict category for text input in Polish', () => {
+    component.booleanSwitchValue = false;
+    component.textInputValue = 'test text';
+    component.selectedLanguage = 'pl';
+
+    const mockResponse = { predictions: [0, 1, 0, 1, 0, 1] };
+    predictionServiceSpy.predict_pl.and.returnValue(of(mockResponse));
+
+    component.predictCategory();
+
+    expect(predictionServiceSpy.predict_pl).toHaveBeenCalledWith('test text');
+    expect(component.catColorList).toEqual([component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor]);
+  });
+
+  it('should predict category for file input in English', () => {
     component.booleanSwitchValue = true;
     component.fileContent = 'test content';
+    component.selectedLanguage = 'en';
 
-    const mockResponse = { prediction: '[0, 1, 0, 1, 0, 1]' };
+    const mockResponse = { predictions: [0, 1, 0, 1, 0, 1] };
     predictionServiceSpy.predict.and.returnValue(of(mockResponse));
 
     component.predictCategory();
 
     expect(predictionServiceSpy.predict).toHaveBeenCalledWith('test content');
     expect(component.catColorList).toEqual([component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor]);
+  });
+
+  it('should predict category for file input in Polish', () => {
+    component.booleanSwitchValue = true;
+    component.fileContent = 'test content';
+    component.selectedLanguage = 'pl';
+
+    const mockResponse = { predictions: [1, 0, 1, 0, 1, 0] };
+    predictionServiceSpy.predict_pl.and.returnValue(of(mockResponse));
+
+    component.predictCategory();
+
+    expect(predictionServiceSpy.predict_pl).toHaveBeenCalledWith('test content');
+    expect(component.catColorList).toEqual([component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor, component.activeColor, component.notActiveColor]);
   });
 });

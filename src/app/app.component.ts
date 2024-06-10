@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { PredictionService } from './prediction.service';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "docu2"
+  title = "docu2";
 
   notActiveColor = "#3d3d3d";
   activeColor = "#2ECC71";
@@ -20,12 +20,14 @@ export class AppComponent {
   cat5Color = this.notActiveColor;
   cat6Color = this.notActiveColor;
 
-  catColorList = [this.cat1Color, this.cat2Color, this.cat3Color, this.cat4Color, this.cat5Color, this.cat6Color]
+  catColorList = [this.cat1Color, this.cat2Color, this.cat3Color, this.cat4Color, this.cat5Color, this.cat6Color];
 
   file: any;
   fileContent!: string;
   booleanSwitchValue: boolean = false;
   textInputValue: string = '';
+  selectedLanguage: string = 'en'; // Default to English
+
   prediction: any;
 
   constructor(private predictionService: PredictionService) { }
@@ -52,34 +54,28 @@ export class AppComponent {
   public predictCategory(): void {
     console.log(this.file)
     if (this.booleanSwitchValue) {
-      this.predictionService.predict(this.fileContent).subscribe(
+      this.predictBasedOnLanguage(this.fileContent);
+    } else {
+      this.predictBasedOnLanguage(this.textInputValue);
+    }
+  }
+
+  private predictBasedOnLanguage(text: string): void {
+    if (this.selectedLanguage === 'en') {
+      this.predictionService.predict(text).subscribe(
         (response) => {
-          console.log('Response:', response);
-          const numberArray: number[] = JSON.parse(response.prediction);
-          for (let i = 0; i < numberArray.length; i++) {
-            if (numberArray[i] == 1) {
-              this.catColorList[i] = this.activeColor;
-            } else {
-              this.catColorList[i] = this.notActiveColor;
-            }
-          }
+          console.log('Response en:', response);
+          this.updateCategoryColors(response);
         },
         (error) => {
           console.error('Error:', error);
         }
       );
     } else {
-      this.predictionService.predict(this.textInputValue).subscribe(
+      this.predictionService.predict_pl(text).subscribe(
         (response) => {
-          console.log('Response:', response);
-          const numberArray: number[] = JSON.parse(response.prediction);
-          for (let i = 0; i < numberArray.length; i++) {
-            if (numberArray[i] == 1) {
-              this.catColorList[i] = this.activeColor;
-            } else {
-              this.catColorList[i] = this.notActiveColor;
-            }
-          }
+          console.log('Response pl:', response);
+          this.updateCategoryColors(response);
         },
         (error) => {
           console.error('Error:', error);
@@ -87,5 +83,15 @@ export class AppComponent {
       );
     }
   }
-}
 
+  private updateCategoryColors(prediction: any): void {
+    const numberArray: number[] = prediction.predictions;
+    for (let i = 0; i < numberArray.length; i++) {
+      if (numberArray[i] === 1) {
+        this.catColorList[i] = this.activeColor;
+      } else {
+        this.catColorList[i] = this.notActiveColor;
+      }
+    }
+  }
+}
